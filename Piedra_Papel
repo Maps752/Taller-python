@@ -1,0 +1,16 @@
+import random
+
+def juego_ppt(usuario, computadora):
+    if usuario == computadora:
+        return "Empate"
+    elif (usuario == "piedra" and computadora == "tijera") or (usuario == "papel" and computadora == "piedra") or (usuario == "tijera" and computadora == "papel"):
+        return "Ganaste"
+    else:
+        return "Perdiste"
+
+opciones = ["piedra", "papel", "tijera"]
+eleccion_usuario = input("Elige piedra, papel o tijera: ").lower()
+eleccion_computadora = random.choice(opciones)
+
+resultado = juego_ppt(eleccion_usuario, eleccion_computadora)
+print(f"La computadora eligió {eleccion_computadora}. {resultado}")

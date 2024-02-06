@@ -1,0 +1,32 @@
+import random
+
+def seleccionar_palabra():
+    palabras = ["python", "programacion", "juego", "aprender", "divertido"]
+    return random.choice(palabras)
+
+def jugar_ahorcado(palabra):
+    intentos_maximos = 6
+    palabra_adivinada = ["_"] * len(palabra)
+    intentos_realizados = 0
+
+    while intentos_realizados < intentos_maximos and "_" in palabra_adivinada:
+        letra = input(f"Palabra: {' '.join(palabra_adivinada)}\nIntento {intentos_realizados + 1}. Ingresa una letra: ").lower()
+
+        if letra.isalpha() and len(letra) == 1:
+            if letra in palabra:
+                for i in range(len(palabra)):
+                    if palabra[i] == letra:
+                        palabra_adivinada[i] = letra
+            else:
+                print("Letra incorrecta. Intenta de nuevo.")
+                intentos_realizados += 1
+        else:
+            print("Ingresa una letra válida.")
+
+    if "_" not in palabra_adivinada:
+        print(f"¡Ganaste! La palabra es: {palabra}")
+    else:
+        print(f"Perdiste. La palabra era: {palabra}")
+
+palabra_secreta = seleccionar_palabra()
+jugar_ahorcado(palabra_secreta)
